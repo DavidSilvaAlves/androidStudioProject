@@ -1,0 +1,38 @@
+package com.example.cartaofidelidade.Uteis;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class DatabaseUtil extends SQLiteOpenHelper {
+
+    private static final String NOME_BANCO = "FIDELIDADE.db";
+    private static final int VERSAO_BANCO = 1;
+
+    public DatabaseUtil(Context context){
+        super(context,NOME_BANCO,null,VERSAO_BANCO);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db){
+        StringBuilder stringBuilderCreateTable = new StringBuilder();
+
+        stringBuilderCreateTable.append("CREATE TABLE clientes (");
+        stringBuilderCreateTable.append("id INTEGER PRIMARY KEY AUTOINCREMENT, ");
+        stringBuilderCreateTable.append("cpf TEXT NOT NULL, ");
+        stringBuilderCreateTable.append("nome TEXT NOT NULL, ");
+        stringBuilderCreateTable.append("numerobotoes INTEGER) ");
+
+        db.execSQL(stringBuilderCreateTable.toString());
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
+        db.execSQL("DROP TABLE IF EXISTS clientes");
+        onCreate(db);
+    }
+
+    public SQLiteDatabase GetConexaoDataBase(){
+        return this.getWritableDatabase();
+    }
+}

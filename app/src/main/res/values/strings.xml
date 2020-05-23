@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CartaoFidelidade</string>
+    <string name="salvar">Salvar</string>
+    <string name="voltar">Voltar</string>
+    <string name="cpf_obrigatorio">CPF é obrigatório!</string>
+    <string name="nome_obrigatorio">NOME é obrigatório!</string>
+    <string name="numerobt_obrigatorio">Adicione estrelas!</string>
+    <string name="registro_salvo">Cadastro efetuado!</string>
+</resources>
