@@ -1,9 +1,16 @@
 package com.example.cartaofidelidade;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.KeyListener;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +25,7 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
     private Button adcEstrela;
     private Button excEstrela;
     private EditText edtNome;
-    private EditText edtCpf;
+    private EditText edtCpf, edtcep, edtsenha, edtemail,edtcomplemento;
     public final String estrela = "X";
     private int numeroBt = 0;
     String cpfAtual;
@@ -30,10 +37,29 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
 
         this.CriarComponentes();
         this.CriarEventos();
+
+        edtcep.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(edtcep.getText().length() == 8) {
+                    Log.e("Tag2", "Msg2");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
 
     protected void CriarComponentes() {
-        bt1 = (Button) findViewById(R.id.bt1);
+       /*bt1 = (Button) findViewById(R.id.bt1);
         bt2 = (Button) findViewById(R.id.bt2);
         bt3 = (Button) findViewById(R.id.bt3);
         bt4 = (Button) findViewById(R.id.bt4);
@@ -42,18 +68,22 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
         bt7 = (Button) findViewById(R.id.bt7);
         bt8 = (Button) findViewById(R.id.bt8);
         bt9 = (Button) findViewById(R.id.bt9);
-        bt10 = (Button) findViewById(R.id.bt10);
+        bt10 = (Button) findViewById(R.id.bt10);*/
         edtNome = (EditText) findViewById(R.id.edtnome);
         edtCpf = (EditText) findViewById(R.id.edtcpf);
-        adcEstrela = (Button) findViewById(R.id.adcEstrela);
         btnCadCliente = (Button) findViewById(R.id.btnCadCliente);
         btnVoltar = (Button) findViewById(R.id.btnVoltar);
-        excEstrela = (Button) findViewById(R.id.excEstrela);
+        edtcep = (EditText) findViewById(R.id.edtcep);
+        edtcomplemento = (EditText) findViewById(R.id.edtcomplemento);
+        edtsenha = (EditText) findViewById(R.id.edtsenha);
+        edtemail = (EditText) findViewById(R.id.edtemail);
         btnVoltar.setOnClickListener(this);
         btnCadCliente.setOnClickListener(this);
-        adcEstrela.setOnClickListener(this);
-        excEstrela.setOnClickListener(this);
-        Estrela(true);
+        //adcEstrela = (Button) findViewById(R.id.adcEstrela);
+        //excEstrela = (Button) findViewById(R.id.excEstrela);
+        //adcEstrela.setOnClickListener(this);
+        //excEstrela.setOnClickListener(this);
+        //Estrela(true);
     }
 
     @Override
@@ -200,11 +230,11 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
         dialogo.show();
     }
 
-    private boolean Estrela(Boolean acao) {
+    /*private boolean Estrela(Boolean acao) {
         adcEstrela.setEnabled(acao);
         excEstrela.setEnabled(acao);
         return false;
-    }
+    }*/
 
     private void limpaBotoes(String acao) {
         bt1.setText(acao);
