@@ -46,7 +46,7 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(edtcep.getText().length() == 8) {
-                    Log.e("Tag2", "Msg2");//teste
+                    Log.e("Tag2", "Msg2");
                 }
             }
 
