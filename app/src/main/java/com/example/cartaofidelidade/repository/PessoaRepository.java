@@ -22,36 +22,50 @@ public class PessoaRepository {
         ContentValues cv = new ContentValues();
 
         cv.put("cpf", pessoaActivity.getCpf());
+        cv.put("senha", pessoaActivity.getSenha());
         cv.put("nome", pessoaActivity.getNome());
-        cv.put("numerobotoes", pessoaActivity.getNumeroBt());
+        cv.put("cep", pessoaActivity.getCep());
+        cv.put("email",pessoaActivity.getEmail());
+        cv.put("complemento", pessoaActivity.getComplemento());
+        cv.put("dtinclusao", String.valueOf(pessoaActivity.getDtInclusao()));
 
-        databaseUtil.GetConexaoDataBase().insert("clientes", null, cv);
+        //cv.put("numerobotoes", pessoaActivity.getNumeroBt());
+
+        databaseUtil.GetConexaoDataBase().insert("DataBaseFidelidade", null, cv);
     }
 
     public void Atualizar(PessoaActivity pessoaActivity) {
         ContentValues cv = new ContentValues();
 
         cv.put("cpf", pessoaActivity.getCpf());
+        cv.put("senha", pessoaActivity.getSenha());
         cv.put("nome", pessoaActivity.getNome());
-        cv.put("numerobotoes", pessoaActivity.getNumeroBt());
+        cv.put("cep", pessoaActivity.getCep());
+        cv.put("email", pessoaActivity.getEmail());
+        cv.put("complemento", pessoaActivity.getComplemento());
+        //cv.put("numerobotoes", pessoaActivity.getNumeroBt());
 
-        databaseUtil.GetConexaoDataBase().update("clientes", cv, "id = ?", new String[]{Integer.toString(pessoaActivity.getId())});
+        databaseUtil.GetConexaoDataBase().update("DataBaseFidelidade", cv, "id = ?", new String[]{Integer.toString(pessoaActivity.getId())});
     }
 
     public Integer Excluir(int id) {
-        return databaseUtil.GetConexaoDataBase().delete("clientes", "id = ?", new String[]{Integer.toString(id)});
+        return databaseUtil.GetConexaoDataBase().delete("DataBaseFidelidade", "id = ?", new String[]{Integer.toString(id)});
     }
 
     public PessoaActivity PesquisaPessoa(int id) {
-        Cursor cursor = databaseUtil.GetConexaoDataBase().rawQuery("SELECT * FROM clientes WHERE id= " + id, null);
+        Cursor cursor = databaseUtil.GetConexaoDataBase().rawQuery("SELECT * FROM DataBaseFidelidade WHERE id= " + id, null);
 
         cursor.moveToFirst();
         PessoaActivity pessoaActivity = new PessoaActivity();
 
         pessoaActivity.setId(cursor.getInt(cursor.getColumnIndex("id")));
         pessoaActivity.setCpf(cursor.getString(cursor.getColumnIndex("cpf")));
+        pessoaActivity.setSenha(cursor.getString(cursor.getColumnIndex("senha")));
         pessoaActivity.setNome(cursor.getString(cursor.getColumnIndex("nome")));
-        pessoaActivity.setNumeroBt(cursor.getInt(cursor.getColumnIndex("numerobotoes")));
+        pessoaActivity.setCep(cursor.getString(cursor.getColumnIndex("cep")));
+        pessoaActivity.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+        pessoaActivity.setComplemento(cursor.getString(cursor.getColumnIndex("complemento")));
+//        pessoaActivity.setNumeroBt(cursor.getInt(cursor.getColumnIndex("numerobotoes")));
         return pessoaActivity;
     }
 
@@ -62,10 +76,14 @@ public class PessoaRepository {
         StringBuilder stringBuilderQuery = new StringBuilder();
         stringBuilderQuery.append("SELECT id, ");
         stringBuilderQuery.append("cpf, ");
+        stringBuilderQuery.append("senha, ");
         stringBuilderQuery.append("nome, ");
-        stringBuilderQuery.append("numerobotoes ");
-        stringBuilderQuery.append(" FROM clientes ");
-        stringBuilderQuery.append(" ORDER BY nome ");
+        stringBuilderQuery.append("cep, ");
+        stringBuilderQuery.append("email, ");
+        stringBuilderQuery.append("complemento");
+        //stringBuilderQuery.append("numerobotoes ");
+        stringBuilderQuery.append(" FROM DataBaseFidelidade");
+        stringBuilderQuery.append(" ORDER BY nome");
 
         Cursor cursor = databaseUtil.GetConexaoDataBase().rawQuery(stringBuilderQuery.toString(), null);
         cursor.moveToFirst();
@@ -76,8 +94,12 @@ public class PessoaRepository {
 
             pessoaActivity.setId(cursor.getInt(cursor.getColumnIndex("id")));
             pessoaActivity.setCpf(cursor.getString(cursor.getColumnIndex("cpf")));
+            pessoaActivity.setSenha(cursor.getString(cursor.getColumnIndex("senha")));
             pessoaActivity.setNome(cursor.getString(cursor.getColumnIndex("nome")));
-            pessoaActivity.setNumeroBt(cursor.getInt(cursor.getColumnIndex("numerobotoes")));
+            pessoaActivity.setCep(cursor.getString(cursor.getColumnIndex("cep")));
+            pessoaActivity.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+            pessoaActivity.setComplemento(cursor.getString(cursor.getColumnIndex("complemento")));
+            //pessoaActivity.setNumeroBt(cursor.getInt(cursor.getColumnIndex("numerobotoes")));
 
             pessoas.add(pessoaActivity);
             cursor.moveToNext();

@@ -65,7 +65,7 @@ public class LinhaConsultarAdapter extends BaseAdapter {
         textViewCodigo.setText(String.valueOf(pessoaActivities.get(position).getId()));
         textViewNome.setText(pessoaActivities.get(position).getNome());
         textViewCpf.setText(pessoaActivities.get(position).getCpf());
-        textViewNBt.setText(String.valueOf(pessoaActivities.get(position).getNumeroBt()));
+        //textViewNBt.setText(String.valueOf(pessoaActivities.get(position).getNumeroBt()));
 
 
         buttonExcluir.setOnClickListener(new View.OnClickListener() {

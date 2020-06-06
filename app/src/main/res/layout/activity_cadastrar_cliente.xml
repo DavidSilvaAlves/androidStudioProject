@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             android:background="#1c2833"
             android:hint="Digite o nome do Cliente"
+            android:inputType="text"
             android:textColorHint="@android:color/darker_gray"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
@@ -109,6 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="14sp"
+            android:inputType="numberDecimal"
             android:text="CEP"
             android:textColor="@android:color/white"
             android:textSize="19sp" />

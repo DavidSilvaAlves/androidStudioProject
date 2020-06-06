@@ -100,7 +100,7 @@ public class EditarActivity extends AppCompatActivity {
             pessoaActivity.setId(Integer.parseInt(edtId.getText().toString()));
             pessoaActivity.setCpf(edtCpf.getText().toString());
             pessoaActivity.setNome(edtNome.getText().toString());
-            pessoaActivity.setNumeroBt(numeroBt);
+            //pessoaActivity.setNumeroBt(numeroBt);
 
             new PessoaRepository(this).Atualizar(pessoaActivity);
 
@@ -130,7 +130,7 @@ public class EditarActivity extends AppCompatActivity {
         edtId.setText(String.valueOf(pessoaActivity.getId()));
         edtNome.setText(pessoaActivity.getNome());
         edtCpf.setText(pessoaActivity.getCpf());
-        numeroBt = pessoaActivity.getNumeroBt();
+        //numeroBt = pessoaActivity.getNumeroBt();
         retornaBt(numeroBt);
         cpfAtual = edtCpf.getText().toString();
 
@@ -244,7 +244,7 @@ public class EditarActivity extends AppCompatActivity {
     }
 
     public void showMessage(String Caption, String Title) {
-        androidx.appcompat.app.AlertDialog.Builder dialogo = new androidx.appcompat.app.AlertDialog.Builder(this);
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
         dialogo.setTitle(Title);
         dialogo.setMessage(Caption);
         dialogo.setNeutralButton("OK", null);

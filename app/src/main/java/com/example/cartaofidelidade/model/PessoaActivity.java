@@ -1,11 +1,17 @@
 package com.example.cartaofidelidade.model;
 
+import java.util.Date;
+
 public class PessoaActivity {
 
     private int id;
     private String cpf;
+    private String senha;
     private String nome;
-    private int numeroBt;
+    private String cep;
+    private String email;
+    private Date dtinclusao;
+    private String complemento;
 
     public int getId() {
         return this.id;
@@ -31,11 +37,43 @@ public class PessoaActivity {
         this.nome = nome;
     }
 
-    public int getNumeroBt() {
-        return this.numeroBt;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setNumeroBt(int numeroBt) {
-        this.numeroBt = numeroBt;
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public Date getDtInclusao() {
+        return dtinclusao;
+    }
+
+    public void setDtinclusao(Date dtinclusao) {
+        this.dtinclusao = dtinclusao;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

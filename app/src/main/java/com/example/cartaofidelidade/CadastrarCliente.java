@@ -3,20 +3,16 @@ package com.example.cartaofidelidade;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.method.KeyListener;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.cartaofidelidade.Uteis.Uteis;
 import com.example.cartaofidelidade.model.PessoaActivity;
 import com.example.cartaofidelidade.repository.PessoaRepository;
+
+import java.util.Date;
 
 public class CadastrarCliente extends AppCompatActivity implements View.OnClickListener {
 
@@ -113,25 +109,26 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
     }
 
     protected void Salvar_onClick() {
-        if (edtCpf.getText().toString().trim().equals("")) {
-            Uteis.Alert(this, this.getString(R.string.cpf_obrigatorio));
-            edtCpf.requestFocus();
-        } else if (edtNome.getText().toString().trim().equals("")) {
-            Uteis.Alert(this, this.getString(R.string.nome_obrigatorio));
-            edtNome.requestFocus();
+        if (edtCpf.getText().toString().trim().equals("") || edtsenha.getText().toString().trim().equals("") || edtNome.getText().toString().trim().equals("") || edtemail.getText().toString().trim().equals("") || edtcep.getText().toString().trim().equals("") || edtcomplemento.getText().toString().trim().equals("")) {
+            Uteis.Alert(this, "Campos obrigatórios vazios!!");
         } else {
             PessoaActivity pessoaActivity = new PessoaActivity();
 
             pessoaActivity.setCpf(edtCpf.getText().toString().trim());
+            pessoaActivity.setSenha(edtsenha.getText().toString().trim());
             pessoaActivity.setNome(edtNome.getText().toString().trim());
-            pessoaActivity.setNumeroBt(numeroBt);
+            pessoaActivity.setEmail(edtemail.getText().toString().trim());
+            pessoaActivity.setCep(edtcep.getText().toString().trim());
+            pessoaActivity.setComplemento(edtcomplemento.getText().toString().trim());
+            pessoaActivity.setDtinclusao(new Date());
+            //pessoaActivity.setNumeroBt(numeroBt);
             cpfAtual = edtCpf.getText().toString();
 
             new PessoaRepository(this).Salvar(pessoaActivity);
             Uteis.Alert(this, this.getString(R.string.registro_salvo));
             numeroBt = 0;
             limpaNmCpf();
-            limpaBotoes("");
+            //limpaBotoes("");
         }
     }
 
@@ -220,6 +217,10 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
     private void limpaNmCpf() {
         edtNome.setText("");
         edtCpf.setText("");
+        edtsenha.setText("");
+        edtcep.setText("");
+        edtcomplemento.setText("");
+        edtemail.setText("");
     }
 
     public void showMessage(String Caption, String Title) {

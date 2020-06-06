@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseUtil extends SQLiteOpenHelper {
 
-    private static final String NOME_BANCO = "FIDELIDADE.db";
+    private static final String NOME_BANCO = "DataBaseFidelidade.db";
     private static final int VERSAO_BANCO = 1;
 
     public DatabaseUtil(Context context){
@@ -17,18 +17,22 @@ public class DatabaseUtil extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         StringBuilder stringBuilderCreateTable = new StringBuilder();
 
-        stringBuilderCreateTable.append("CREATE TABLE clientes (");
+        stringBuilderCreateTable.append("CREATE TABLE DataBaseFidelidade (");
         stringBuilderCreateTable.append("id INTEGER PRIMARY KEY AUTOINCREMENT, ");
         stringBuilderCreateTable.append("cpf TEXT NOT NULL, ");
+        stringBuilderCreateTable.append("senha TEXT NOT NULL, ");
         stringBuilderCreateTable.append("nome TEXT NOT NULL, ");
-        stringBuilderCreateTable.append("numerobotoes INTEGER) ");
+        stringBuilderCreateTable.append("cep TEXT NOT NULL, ");
+        stringBuilderCreateTable.append("email TEXT NOT NULL, ");
+        stringBuilderCreateTable.append("complemento TEXT NOT NULL,");
+        stringBuilderCreateTable.append("dtinclusao DATE )");
 
         db.execSQL(stringBuilderCreateTable.toString());
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        db.execSQL("DROP TABLE IF EXISTS clientes");
+        db.execSQL("DROP TABLE IF EXISTS DataBaseFidelidade");
         onCreate(db);
     }
 
