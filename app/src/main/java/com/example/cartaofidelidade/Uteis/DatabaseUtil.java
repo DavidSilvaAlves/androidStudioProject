@@ -26,6 +26,7 @@ public class DatabaseUtil extends SQLiteOpenHelper {
         stringBuilderCreateTable.append("email TEXT NOT NULL, ");
         stringBuilderCreateTable.append("complemento TEXT NOT NULL,");
         stringBuilderCreateTable.append("dtinclusao DATE     )");
+        //awdawhbjawdbawdjhbawdyhwabdjwa
 
         db.execSQL(stringBuilderCreateTable.toString());
     }
