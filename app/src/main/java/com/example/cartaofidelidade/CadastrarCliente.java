@@ -1,5 +1,6 @@
 package com.example.cartaofidelidade;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,12 +8,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cartaofidelidade.Uteis.BuscaCep;
 import com.example.cartaofidelidade.Uteis.Uteis;
 import com.example.cartaofidelidade.model.PessoaActivity;
 import com.example.cartaofidelidade.repository.PessoaRepository;
 
 import java.util.Date;
+import java.util.List;
 
 public class CadastrarCliente extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,7 +28,8 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
     private Button adcEstrela;
     private Button excEstrela;
     private EditText edtNome;
-    private EditText edtCpf, edtcep, edtsenha, edtemail,edtcomplemento;
+    private EditText edtCpf, edtcep, edtsenha, edtemail, edtcomplemento;
+    private TextView viewCep;
     public final String estrela = "X";
     private int numeroBt = 0;
     String cpfAtual;
@@ -39,10 +47,26 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(edtcep.getText().length() == 8) {
-                    Log.e("Tag2", "Msg2");
+                if (edtcep.getText().length() == 8) {
+                    BuscaCep buscaCep = new BuscaCep();
+                    List<String> lista = buscaCep.buscarCep(edtcep.getText().toString());
+                    if (lista != null) {
+                        String logradouro = lista.get(0);
+                        String bairro = lista.get(1);
+                        String cidade = lista.get(2);
+                        String uf = lista.get(3);
+                        Log.e("Tag2", "logradouro " + logradouro + "bairro " + bairro + "cidade " + cidade + uf);
+                        viewCep.setText("Logradouro: " + logradouro
+                                + "\nBairro: " + bairro + "\nCidade: " + cidade + "\nUF: " + uf);
+
+                    } else {
+                        viewCep.setText("CEP não encontrado. Favor digite novamente!");
+                    }
+                } else if (edtcep.getText().length() != 8) {
+                    viewCep.setText("");
                 }
             }
 
@@ -73,6 +97,7 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
         edtcomplemento = (EditText) findViewById(R.id.edtcomplemento);
         edtsenha = (EditText) findViewById(R.id.edtsenha);
         edtemail = (EditText) findViewById(R.id.edtemail);
+        viewCep = (TextView) findViewById(R.id.viewCep);
         btnVoltar.setOnClickListener(this);
         btnCadCliente.setOnClickListener(this);
         //adcEstrela = (Button) findViewById(R.id.adcEstrela);

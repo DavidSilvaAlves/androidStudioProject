@@ -19,15 +19,15 @@ public class PessoaRepository {
     }
 
     public void Salvar(PessoaActivity pessoaActivity) {
-        ContentValues cv = new ContentValues();
+            ContentValues cv = new ContentValues();
 
-        cv.put("cpf", pessoaActivity.getCpf());
-        cv.put("senha", pessoaActivity.getSenha());
-        cv.put("nome", pessoaActivity.getNome());
-        cv.put("cep", pessoaActivity.getCep());
-        cv.put("email",pessoaActivity.getEmail());
-        cv.put("complemento", pessoaActivity.getComplemento());
-        cv.put("dtinclusao", String.valueOf(pessoaActivity.getDtInclusao()));
+            cv.put("cpf", pessoaActivity.getCpf());
+            cv.put("senha", pessoaActivity.getSenha());
+            cv.put("nome", pessoaActivity.getNome());
+            cv.put("cep", pessoaActivity.getCep());
+            cv.put("email",pessoaActivity.getEmail());
+            cv.put("complemento", pessoaActivity.getComplemento());
+            cv.put("dtinclusao", String.valueOf(pessoaActivity.getDtInclusao()));
 
         //cv.put("numerobotoes", pessoaActivity.getNumeroBt());
 
@@ -67,6 +67,16 @@ public class PessoaRepository {
         pessoaActivity.setComplemento(cursor.getString(cursor.getColumnIndex("complemento")));
 //        pessoaActivity.setNumeroBt(cursor.getInt(cursor.getColumnIndex("numerobotoes")));
         return pessoaActivity;
+    }
+
+    public boolean verificaLogin(String cpf, String senha) {
+        Cursor cursor = databaseUtil.GetConexaoDataBase().rawQuery("SELECT cpf,senha FROM DataBaseFidelidade WHERE cpf= " + cpf + " AND senha= " + senha, null);
+
+        if(cursor.moveToFirst()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public List<PessoaActivity> SelecionarTodos() {

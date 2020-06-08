@@ -24,7 +24,7 @@
         android:textSize="19sp" />
 
     <EditText
-        android:id="@+id/edtLoginCpf"
+        android:id="@+id/edtLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

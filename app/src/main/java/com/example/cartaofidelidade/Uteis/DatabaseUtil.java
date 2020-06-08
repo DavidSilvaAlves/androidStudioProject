@@ -25,8 +25,7 @@ public class DatabaseUtil extends SQLiteOpenHelper {
         stringBuilderCreateTable.append("cep TEXT NOT NULL, ");
         stringBuilderCreateTable.append("email TEXT NOT NULL, ");
         stringBuilderCreateTable.append("complemento TEXT NOT NULL,");
-        stringBuilderCreateTable.append("dtinclusao DATE     )");
-        //awdawhbjawdbawdjhbawdyhwabdjwa
+        stringBuilderCreateTable.append("dtinclusao DATE)");
 
         db.execSQL(stringBuilderCreateTable.toString());
     }
@@ -40,4 +39,5 @@ public class DatabaseUtil extends SQLiteOpenHelper {
     public SQLiteDatabase GetConexaoDataBase(){
         return this.getWritableDatabase();
     }
+    
 }
