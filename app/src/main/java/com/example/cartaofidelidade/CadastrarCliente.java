@@ -1,11 +1,13 @@
 package com.example.cartaofidelidade;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,6 +40,7 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_cliente);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         this.CriarComponentes();
         this.CriarEventos();
@@ -115,6 +118,7 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
         if (v.getId() == R.id.excEstrela) {
             removerBt();
         }
+
     }
 
     protected void CriarEventos() {
@@ -128,8 +132,11 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intentMainActivity = new Intent(getApplicationContext(), Login.class);
+                startActivity(intentMainActivity);
+                finish();
             }
+
         });
     }
 
@@ -151,7 +158,7 @@ public class CadastrarCliente extends AppCompatActivity implements View.OnClickL
 
             new PessoaRepository(this).Salvar(pessoaActivity);
             Uteis.Alert(this, this.getString(R.string.registro_salvo));
-            numeroBt = 0;
+            //numeroBt = 0;
             limpaNmCpf();
             //limpaBotoes("");
         }

@@ -44,25 +44,25 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btnEntrar){
-//            if(cpf.getText().toString().equals(123456) && senha.getText().toString().equals(1111)){
-//                //Entrar na tela de Admin para fazer cadastro das compras para cpf especifico
-//            }else {
-//                //entra na tela do usuario que apenas le os bonus do cartao fidelidade
-//            }
             if(cpf.getText().toString().equals("") || senha.getText().toString().equals("")){
                 Uteis.Alert(this,"Favor preencher todos os campos!");
             }else {
-                if (new PessoaRepository(this).verificaLogin(cpf.getText().toString(), senha.getText().toString()) == true) {
-
-                    if(cpf.getText().toString().equals("000000")){
+                if (new PessoaRepository(this).verificaLogin(cpf.getText().toString(), senha.getText().toString())) {
+                    Log.e("msg", String.valueOf(cpf));
+                    if(cpf.getText().toString().equals("999999")){
                         //tela do administrador
                         Log.e("msg", "Login Admin efetuado!");
+                        abrirTelaAdmin();
                         return;
+                    }else {
+                        //tela do usuario
+                        Log.e("msg", "Login Usuario efetuado!");
+                        abrirTelaUsuario();
                     }
-                    //tela do usuario
-
                 } else {
                     Uteis.Alert(this,"Usuario ou senha incorreto!");
+                    cpf.setText("");
+                    senha.setText("");
                     Log.e("msg", "Login nao efetuado!");
                 }
             }
@@ -74,6 +74,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
     private void abrirCadastro() {
         Intent intent = new Intent(this, CadastrarCliente.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void abrirTelaAdmin(){
+        Intent intent = new Intent(this, TelaAdministrador.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void abrirTelaUsuario(){
+        Intent intent = new Intent(this, TelaUsuario.class);
         startActivity(intent);
         finish();
     }

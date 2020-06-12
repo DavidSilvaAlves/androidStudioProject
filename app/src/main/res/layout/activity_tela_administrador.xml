@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/idTelaAdministrador"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#12181d"
+    android:orientation="vertical"
+    tools:context=".TelaAdministrador">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="628dp"
+            android:layout_height="162dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-20dp"
+            android:src="@drawable/logo2" />
+
+        <TextView
+            android:id="@+id/viewUsuarioLogado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
+            android:layout_marginRight="12dp"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="14dp"
+            android:text="Bem vindo Admin" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="388dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="#12181d"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btNovaVenda"
+            android:layout_width="120dp"
+            android:layout_height="99dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:text="Nova Venda"
+            android:background="#1c2833"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btProdutos"
+            android:layout_width="120dp"
+            android:layout_height="99dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="#1c2833"
+            android:text="Produtos"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btNovoProduto"
+            android:layout_width="120dp"
+            android:layout_height="99dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="#1c2833"
+            android:text="Novo produto"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="388dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="7dp"
+        android:background="#12181d"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btNovoCliente"
+            android:layout_width="120dp"
+            android:layout_height="99dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:text="Novo Cliente"
+            android:background="#1c2833"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btConsultar"
+            android:layout_width="120dp"
+            android:layout_height="99dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="#1c2833"
+            android:text="Consultar"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btExcluirCliente"
+            android:layout_width="120dp"
+            android:layout_height="99dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="#1c2833"
+            android:text="Excluir Cliente"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+</LinearLayout>

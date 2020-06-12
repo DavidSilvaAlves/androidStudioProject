@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.example.cartaofidelidade.Uteis.DatabaseUtil;
+import com.example.cartaofidelidade.model.CartaoActivity;
 import com.example.cartaofidelidade.model.PessoaActivity;
 
 import java.util.ArrayList;
@@ -19,19 +20,26 @@ public class PessoaRepository {
     }
 
     public void Salvar(PessoaActivity pessoaActivity) {
-            ContentValues cv = new ContentValues();
+        CartaoActivity ca = new CartaoActivity();
+        ContentValues cvca = new ContentValues();
+        ContentValues cv = new ContentValues();
 
-            cv.put("cpf", pessoaActivity.getCpf());
-            cv.put("senha", pessoaActivity.getSenha());
-            cv.put("nome", pessoaActivity.getNome());
-            cv.put("cep", pessoaActivity.getCep());
-            cv.put("email",pessoaActivity.getEmail());
-            cv.put("complemento", pessoaActivity.getComplemento());
-            cv.put("dtinclusao", String.valueOf(pessoaActivity.getDtInclusao()));
+        cv.put("cpf", pessoaActivity.getCpf());
+        cv.put("senha", pessoaActivity.getSenha());
+        cv.put("nome", pessoaActivity.getNome());
+        cv.put("cep", pessoaActivity.getCep());
+        cv.put("email", pessoaActivity.getEmail());
+        cv.put("complemento", pessoaActivity.getComplemento());
+        cv.put("dtinclusao", String.valueOf(pessoaActivity.getDtInclusao()));
+
+
+        ca.setPessoaCpf(pessoaActivity);
+        cvca.put("PessoaCpf",ca.getPessoaCpf().getCpf());
 
         //cv.put("numerobotoes", pessoaActivity.getNumeroBt());
 
         databaseUtil.GetConexaoDataBase().insert("DataBaseFidelidade", null, cv);
+        databaseUtil.GetConexaoDataBase().insert("CartaoFidelidadeBd",null,cvca);
     }
 
     public void Atualizar(PessoaActivity pessoaActivity) {
@@ -72,9 +80,9 @@ public class PessoaRepository {
     public boolean verificaLogin(String cpf, String senha) {
         Cursor cursor = databaseUtil.GetConexaoDataBase().rawQuery("SELECT cpf,senha FROM DataBaseFidelidade WHERE cpf= " + cpf + " AND senha= " + senha, null);
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
